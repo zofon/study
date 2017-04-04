@@ -1,0 +1,109 @@
+\documentclass[a4paper,12pt]{ctexart}%有了这个ctexart的模板，使用中文是很方便的。
+\begin{document}
+\pagestyle{empty}
+\begin{center}
+\huge \textbf{VIM}
+\end{center}
+
+\newpage
+\tableofcontents
+
+\newpage
+\section{vim介绍}
+Vim是从 vi 发展出来的一个文本编辑器。代码补全、编译及错误跳转等方便编程的功能特别丰富，在程序员中被广泛使用，和Emacs并列成为类Unix系统用户最喜欢的文本编辑器。
+
+\section{vim配置介绍}
+vim的大部分设定都位于\verb|~/.vimrc|文件中。如果没有该文件可以创建一个文件。如果要添加鼠标支持，添加缩进设置，可以添加对应的命令。
+
+\section{鼠标支持}
+vim是可以添加鼠标支持的，即使是SSH连接到远程服务器也是可以的，但是默认是没有激活的，其实我用过之后，我认为也不需要激活。对新手而言，激活的方法有两种：
+\begin{enumerate}
+  \item 进入vim的时候，执行\verb|:set mouse=a|
+  \item 将\verb|set mouse=a|命令添加到\verb|~/.vimrc|中。
+\end{enumerate}
+
+\section{模式介绍}
+就我的水平而言，目前使用两种模式。
+\subsection{命令模式}
+就是进入vim时候的模式，左下角没有任何显示，最基本的模式。
+\subsection{编辑模式}
+在命令模式的时候，左下角显示--INSERT--按下相关的命令（如：i）进入编辑模式。这个时候就像在其他的文本编辑器下面一样进行操作即可。进入编辑模式的命令如下：
+\begin{description}
+  \item[a] 这个是我常用的按键，在当前字符的后插入。
+  \item[i] 这个也是我常用的按键，在当前位置插入。
+\end{description}
+这个命令暂时就介绍两个，其他的就不介绍了。
+
+\section{移动光标}
+关于光标的移动有多种方法，分为两类，鼠标操作，键盘操作。
+\subsection{鼠标操作}
+vim的鼠标功能默认是没有激活的，要手动激活。
+
+在命令模式下输入\verb|:set mouse=a|，这是激活的方法。当然将这条命令加入\verb|.vimrc|文件可以方便很多，只要设置一次就行。
+\subsection{键盘操作}
+键盘操作相对比较复杂。在编辑模式下移动光标很简单，使用上下左右键，就不讲了。下面讲的是在命令模式下移动光标的方法
+\begin{description}
+  \item[Ctrl+f] 向下移动一屏
+  \item[Ctrl+d] 向下移动半屏
+  \item[Ctrl+b] 向上移动一屏
+  \item[Ctrl+b] 向上移动半屏
+  \item[gg]     跳到第一行
+  \item[G]      跳到最后一行
+\end{description}
+
+\section{查找和跳转}
+查找的命令是\verb|:/查找内容|，按n键查找下一个，按N键查找上一个。如果希望搜索到的结果高亮，需要在命令模式下输入 \verb|:set hlsearch|，当然了，加入到\verb|.vimrc|文件中是最好的选择。
+\begin{verbatim}
+如果一个单词比较长，可以将光标移动到该单词上，按下*或者#进行该单词的搜索。
+(*相当于/搜索，#相当于?搜索)
+\end{verbatim}
+跳转到121行的命令是\verb|:121|，很简单。
+
+\section{删除和撤销}
+删除既可以在命令模式下完成，也可以在编辑模式下完成。在编辑模式下很简单，在这里我们主要讲在命令下删除或者撤销的方法。
+\subsection{删除相关}
+删除主要的就是删除当前字符和删除当前行。还有一些其他的技巧性的操作。\verb|$|的意思一般是指到最后的意思。在面可以感受到。
+\begin{verbatim}
+  x     删除当前字符，即光标所在的地方的字符。
+  3x    删除当前的三个字符，即光标向后三个字符。
+  d$    删除当前字符之后的所有字符。
+  D     删除当前字符至行尾。
+  dd    删除当前行。
+  10d   删除当前行开始的10行。
+  :4,10d    删除4到10行。
+  :4,$d     删除4行之后的所有行。
+\end{verbatim}
+
+\subsection{撤销}
+撤销和重做（撤销的撤销）
+\begin{description}
+  \item[u] 向前撤销一个操作
+  \item[ctrl+r] 撤销之前那个撤销的动作。
+\end{description}
+
+\section{自动完成}
+和notepad++一样，vim当然有自动补全的功能。输入字符串的前面部分字符，然后按ctrl+p
+
+\section{替换命令}
+替换操作是一个常用的操作。这里只介绍三个，其他的可以不用知道。
+\begin{verbatim}
+  r     替换当前字符，如ra命令将当前的字符替换成r。
+  %s/old/new/g  在全文范围内将old替换成new。
+  ddp   交换光标所在行和其下紧邻的一行。
+\end{verbatim}
+
+
+
+
+
+
+
+
+
+\section{退出命令}
+\begin{verbatim}
+  ZZ    保存并退出。
+  :wq   保存并退出。
+  :q!   不保存退出。
+\end{verbatim}
+\end{document} 

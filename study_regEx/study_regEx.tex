@@ -1,0 +1,64 @@
+\documentclass[a4paper,12pt]{ctexart}
+\usepackage[margin=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{float}
+\usepackage{url}
+\usepackage[colorlinks,linkcolor=black]{hyperref}%colorlinks启用链接颜色，linkcolor指定对应的颜色
+\pagestyle{empty}
+\CTEXsetup[format={\Large\bfseries}]{section}%可以让section的标题左对齐。
+%\CTEXsetup[format+={\flushleft}]{section}%让section的标题居左
+%\renewcommand{\thesection}{\chinese{section}}%将“1.1”改为汉字“一”，但是subsection就会变成  六.1 ，比较难看，还是不用比较好。
+\begin{document}
+
+\begin{center}
+\huge regEx
+\end{center}
+\normalsize
+
+%\tableofcontents
+%\newpage
+\section{介绍正则表达式}
+正则表达式用于匹配某些复杂规则的字符串，换句话说，正则表达式就是记录文本规则的代码。如：用于文件查找的通配符*和?，*会被解释成任意的字符串。这是最简单的正则表达式~\cite{regEx入门}。
+
+
+\section{专业术语}
+\begin{itemize}
+  \item 通配符(wildcard)
+  \item 元字符(metacharacter)
+\end{itemize}
+
+\section{例子}
+\subsection{匹配电话号码}
+正常的电话号码是0523-84637261，前面的区号可能3位或者4位，这是最基本的了。
+解答：\verb|\d{3,4}-\d{8}|
+\subsection{匹配IP地址}
+这是一个经典的问题了，当第一位为2的时候，第二不能为6以上，第二位为5时，第三位不能为6以上。要解决这个问题，我们需要用到分枝条件。
+
+解答：
+\begin{verbatim}
+((2[0-4]\d|25[0-5]|[01]?\d\d?)\.){3}(2[0-4]\d|25[0-5]|[01]?\d\d?)
+
+理解这个表达式的关键是理解是：2[0-4]\d|25[0-5]|[01]?\d\d?
+\end{verbatim}
+
+\subsection{搜索文本中的内容并导出}
+在文件file.txt中搜索'target.data'之后（'target.data'可以是正则表达式），导入到out.log
+\begin{verbatim}
+grep 'target.data' file.txt | tee -a out.log
+\end{verbatim}
+
+\bibliographystyle{plain}
+\bibliography{Referenzarchiv}
+
+%\bibliographystyle{IEEEtran.bst}
+%\bibliographystyle{plain}
+%表示指定文献引用的格式设置参考文献的类型 (bibliography style). 标准的为 plain:
+%其它的类型包括：
+%unsrt – 基本上跟 plain 类型一样, 除了参考文献的条目的编号是按照引用的顺序, 而不是按照作者的字母顺序.
+%alpha – 类似于 plain 类型, 当参考文献的条目的编号基于作者名字和出版年份的顺序.
+%abbrv – 缩写格式 .
+
+%\bibliography{ReferenzarchivWithoutURLs,OtherReferences}
+%对应的引用文件。
+\end{document}

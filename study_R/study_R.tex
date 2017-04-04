@@ -1,0 +1,59 @@
+\documentclass[a4paper,12pt]{ctexart}
+\usepackage[margin=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{float}
+\usepackage[colorlinks,linkcolor=black]{hyperref}%colorlinks启用链接颜色，linkcolor指定对应的颜色
+\pagestyle{empty}
+\begin{document}
+
+\begin{center}
+\huge \textbf{R学习}
+\end{center}
+
+\tableofcontents
+\newpage
+
+\charpter{R语言介绍}
+
+
+
+\charpter{R命令介绍}
+在linux下面使用R的时候，我们一般用到的命令是：
+\begin{verbatim}
+R --vanilla <plot.R >a.out
+\end{verbatim}
+这里的 --vanilla 是参数，当然还有别的很多参数，具体有兴趣可以用man命令查看。
+<plot.R 的意思是将plot-R这个文件作为一个输入。既然有输入，那自然有输出，>a.out 的意思就是将显示的内容输出到a.out这个文件中。
+
+\charpter{安装对应的包}
+R语言中，有多种方式可以导入数据包，如下，一目了然：
+\begin{verbatim}
+library(Hmisc)
+source("plotter.R")
+\end{verbatim}
+如果没有对应的包，就要安装，其中source("plotter.R")，这个plotter.R文件是在当前的目录下的。
+在linux下，进入R之后，用如下命令：
+\begin{verbatim}
+install.packages("ggplot2")
+install.packages("Hmisc")
+\end{verbatim}
+
+
+
+\charpter{}
+\charpter{}
+\charpter{}
+\charpter{}
+\charpter{}
+
+
+
+%\begin{verbatim}
+%git config --global http.postBuffer  524288000
+%\end{verbatim}
+
+
+
+
+\end{document}

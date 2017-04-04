@@ -1,0 +1,18 @@
+创建用户用如下命令
+	adduser z
+按照指示完成用户的创建，创建好的用户是没有root权限的，这时候需要将z用户添加到root用户的目录中。修改/etc/sudoers文件。
+	sudo vim /etc/sudoers
+在文件中添加如下内容：
+	# User privilege specification
+	root	ALL=(ALL:ALL) ALL
+
+	jack	ALL=(ALL:ALL) ALL
+	# Members of the admin group may gain root privileges
+	%admin ALL=(ALL) ALL
+
+	z	ALL=(ALL:ALL) ALL
+	# Members of the admin group may gain root privileges
+	%admin ALL=(ALL) ALL
+
+最后保存退出。
+

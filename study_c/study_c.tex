@@ -1,0 +1,48 @@
+\documentclass[a4paper,12pt]{ctexart}
+\usepackage[margin=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{float}
+\usepackage[colorlinks,linkcolor=black]{hyperref}%colorlinks启用链接颜色，linkcolor指定对应的颜色
+\pagestyle{empty}
+\CTEXsetup[format={\Large\bfseries}]{section}%可以让section的标题左对齐。
+%\CTEXsetup[format+={\flushleft}]{section}%让section的标题居左
+%\renewcommand{\thesection}{\chinese{section}}%将“1.1”改为汉字“一”，但是subsection就会变成  六.1 ，比较难看，还是不用比较好。
+\begin{document}
+
+\begin{center}
+\huge \textbf{学习C}
+\end{center}
+
+\tableofcontents
+\newpage
+
+\section{基本语法}
+\section{编译过程}
+初学者在编译的时候最好一步一步来,以hello.c为例：
+
+先将源文件编译成目标文件：gcc - c  hello.c
+上一步生成hello.o文件，再将目标文件编译成可执行文件：gcc -o  hello  hello.o
+生成的可执行文件是 当前路径下 a.out
+
+最简单的是
+gcc hello.c,直接生成a.out
+
+\section{引用的例子}
+这是一个引用~\cite{LCN2002}
+
+
+\bibliographystyle{plain}%
+\bibliography{Referenzarchiv}
+
+%\bibliographystyle{IEEEtran.bst}
+%\bibliographystyle{plain}
+%表示指定文献引用的格式设置参考文献的类型 (bibliography style). 标准的为 plain:
+%其它的类型包括：
+%unsrt – 基本上跟 plain 类型一样, 除了参考文献的条目的编号是按照引用的顺序, 而不是按照作者的字母顺序.
+%alpha – 类似于 plain 类型, 当参考文献的条目的编号基于作者名字和出版年份的顺序.
+%abbrv – 缩写格式 .
+
+%\bibliography{ReferenzarchivWithoutURLs,OtherReferences}
+%对应的引用文件。
+\end{document}

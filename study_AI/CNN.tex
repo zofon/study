@@ -1,0 +1,47 @@
+\documentclass[a4paper,12pt]{ctexart}
+\usepackage{amssymb}
+\usepackage{url}%用于引用网页，和下面一行（超链接）的区别就是，url是正式的引用和文献引用一样，
+\usepackage[colorlinks,linkcolor=red]{hyperref}%colorlinks启用链接颜色，linkcolor指定对应的颜色
+
+\usepackage[margin=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{float}
+\pagestyle{empty}
+\CTEXsetup[format={\Large\bfseries}]{section}%可以让section的标题左对齐。
+%\CTEXsetup[format+={\flushleft}]{section}%让section的标题居左
+%\renewcommand{\thesection}{\chinese{section}}%将“1.1”改为汉字“一”，但是subsection就会变成  六.1 ，比较难看，还是不用比较好。
+\begin{document}
+
+\begin{center}
+\huge \textbf{\herf[http://blog.csdn.net/stdcoutzyx/article/details/41596663]{卷积神经网络}}
+\end{center}
+\tableofcontents
+\newpage
+\chapter{引言}
+Deep Learning是全部深度学习算法的总称，CNN（Convolutional Neural Network）是深度学习算法在图像处理领域的一个应用。
+\begin{itemize}
+	\item 第一点，在学习Deep learning和CNN之前，总以为它们是很了不得的知识，总以为它们能解决很多问题，学习了之后，才知道它们不过与其他机器学习算法如svm等相似，仍然可以把它当做一个分类器，仍然可以像使用一个黑盒子那样使用它。
+	\item 第二点，Deep Learning强大的地方就是可以利用网络中间某一层的输出当做是数据的另一种表达，从而可以将其认为是经过网络学习到的特征。基于该特征，可以进行进一步的相似度比较等。
+	\item 第三点，Deep Learning算法能够有效的关键其实是大规模的数据，这一点原因在于每个DL都有众多的参数，少量数据无法将参数训练充分。
+\end{itemize}
+
+
+
+
+
+
+\bibliographystyle{plain}%
+\bibliography{Referenzarchiv}
+
+%\bibliographystyle{IEEEtran.bst}
+%\bibliographystyle{plain}
+%表示指定文献引用的格式设置参考文献的类型 (bibliography style). 标准的为 plain:
+%其它的类型包括：
+%unsrt – 基本上跟 plain 类型一样, 除了参考文献的条目的编号是按照引用的顺序, 而不是按照作者的字母顺序.
+%alpha – 类似于 plain 类型, 当参考文献的条目的编号基于作者名字和出版年份的顺序.
+%abbrv – 缩写格式 .
+
+%\bibliography{ReferenzarchivWithoutURLs,OtherReferences}
+%对应的引用文件。
+\end{document}

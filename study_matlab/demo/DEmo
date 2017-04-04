@@ -1,0 +1,466 @@
+图形样式、标注、题字
+(也可以利用菜单直接Insert)
+x=0:pi/20:2*pi;
+plot(x,sin(x),'b-.')
+hold on
+plot(x,cos(x),'r--')
+hold on
+plot(x,sin(x)-1,'g:')
+hold on
+plot(x,cos(x)-1)
+xlabel('x');
+xlabel('x轴');
+ylabel('y轴');
+title('图形样式、标注等');
+text(pi,sin(pi),'x=\pi');
+legend('sin(x)','cos(x)','sin(x)-1','cos(x)-1');
+[x1,y1]=ginput(1) %利用鼠标定位查找线上某点的值
+x1 =
+   2.0893
+y1 =
+  -0.5000
+gtext('x=2.5') %鼠标定位放置所需的值在线上
+
+
+
+fplot('[sin(x),cos(x),sqrt(x)-1]',[0 2*pi])
+
+
+M文件：myfun.m
+内容如下：
+functiony=myfun(x)
+y(:,1)=sin(x);
+y(:,2)=cos(x);
+y(:,3)=x^(1/2)-1;
+fplot('myfun',[0 2*pi])
+
+
+
+
+
+
+
+
+[x,y]=fplot('sin',[0 2*pi]);
+[x1,y1]=fplot('cos',[0 2*pi]);
+plot(x,y,'-r',x1,y1,'-.k')
+legend('y=sinx','y=cosx')
+
+
+
+
+
+
+
+x=[-2:0.2:2];
+y=exp(x)-sin(x);
+plot(x,y,'-or','linewidth',2)
+
+
+画出y1=6(sinx-cosx),y2=x2^x-1的图形
+x=[-3:0.1:3];
+y1=6*(sin(x)-cos(x));
+y2=x.*2.^x-1;
+plot(x,y1,'-r',x,y2,'-.k','linewidth',2)
+
+
+
+绘制心形图r=2(1-cosθ)的极坐标图形
+
+theta=[0:0.01:2*pi];
+polar(theta,2*(1-cos(theta)),'-k')
+polar(theta,2*(1-cos(theta)),'-or')
+
+
+用双轴对数坐标绘制y=x*3^x-30的图形
+x=logspace(-3,3);
+y=x.*3.^x-30;
+loglog(y,'-or','linewidth',2);
+grid on
+
+
+绘制数据向量的单轴对数坐标图形
+x=[1:50];
+y=[1:50];
+semilogx(x,y,'-*b')
+%绘制横轴为对数坐标
+%纵轴为线性坐标
+grid on
+semilogy(x,y,'-*b')
+%绘制纵轴为对数坐标
+%横轴为线性坐标
+grid on
+
+
+绘制矩阵的条形图，
+并求出句柄属性值向量。
+A=[1 2 3;4 5 6;7 8 9];
+h=bar(A)
+
+h =
+
+ 171.0031  174.0026  176.0026
+
+
+
+
+绘制矩阵的水平条形图。
+y=[3 2 -2 2 1;-1 2 3 7 1;7 2 -3 5 2];
+x=[1:3];
+barh(x,y)
+
+
+绘制矩阵的面积图。
+y=[3 2 -2 2 1;-1 3 3 7 2;-7 5 5 9 3];
+area(y)
+
+
+
+绘制矩阵的二维饼图
+x=[1 2 3;4 5 6;7 8 9];
+explode=[0 1 0 1 0 1 0 1 0];
+pie(x,explode)
+
+
+自行确定数据向量，绘制其散点图。
+x=rand(1,100);y=randn(1,100);scatter(x,y,20)
+
+
+自行确定数据，绘制其柱形图。
+x=[-2:0.01:4];
+y=randn(1131,1);
+hist(y,x)
+
+
+绘制y=sinx在[0,2*pi]上的误差图。
+
+x=[0:pi/20:2*pi];
+y=sin(x);
+E=std(y)*ones(size(x));
+%条形控制
+errorbar(x,y,E)
+
+
+绘制火柴杆图。
+x=[1 1.5 2;3 3.5 4;5 5.5 6];
+y=[4 3 2;4 8 9;2 7 3];
+stem(x,y,'fill')
+%fill意思是“实心点”
+
+
+绘制羽列图。
+U=[-90:5:90]*pi/180;
+%建立等间距数据
+V=2*ones(size(U));
+%根据U建立数据
+=pol2cart(U,V);
+转换数据为直角坐标形式
+feather(U,V)
+
+
+同一窗口绘制
+和在[0,30]上的图形。
+x=[0:0.01:30];
+y1=50*exp(-0.05*x).*sin(x);
+y2=0.5*exp(-0.5*x).*cos(x);
+plotyy(x,y1,x,y2,'plot')
+%plotyy(x,y1,x,y2,'plot')表示：
+用左侧y标度绘制（x,y1）
+用右侧y标度绘制（x,y2）
+
+
+绘制8阶魔方矩阵的等值线图和阶梯图。
+A=magic(8);contour(A)%绘制等值线图stairs(A)%绘制阶梯图
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+绘制玫瑰花图。
+theta=rand(1,200)*2*pi;
+rose(theta,25)
+
+
+绘制罗盘图。
+x=rand(20,1);y=randn(20,1);
+compass(x,y)
+
+绘制函数的梯度场矢量图。
+[x,y]=meshgrid([-2:0.1:2]);%建立栅格点数据向量
+z=3.*x.*y*exp(-x.^2-y.^2)-1;%计算函数值向量
+=gradient(z,0.2,0.2);%计算梯度值向量
+quiver(x,y,u,v,2)%绘制梯度场矢量图
+
+
+给定向量x,y生成网格矩阵。
+x=[1 2 3 4];
+y=[10 11 12 13 14];
+=meshgrid(x,y)
+
+
+U =
+
+    1     2     3     4
+    1     2     3     4
+    1     2     3     4
+    1     2     3     4
+    1     2     3     4
+
+
+V =
+
+   10    10    10    10
+   11    11    11    11
+   12    12    12    12
+   13    13    13    13
+   14    14    14    14
+
+
+
+
+生成一个5阶高斯分布矩阵，并给出相应的x,y向量矩阵。
+[X,Y,Z]=peaks(5)
+
+X =
+  -3.0000   -1.5000         0    1.5000    3.0000
+  -3.0000   -1.5000         0    1.5000    3.0000
+  -3.0000   -1.5000         0    1.5000    3.0000
+  -3.0000   -1.5000         0    1.5000    3.0000
+  -3.0000   -1.5000         0    1.5000    3.0000
+
+Y =
+  -3.0000   -3.0000   -3.0000   -3.0000   -3.0000
+  -1.5000   -1.5000   -1.5000   -1.5000   -1.5000
+        0         0         0         0         0
+   1.5000    1.5000    1.5000    1.5000    1.5000
+   3.0000    3.0000    3.0000    3.0000    3.0000
+
+Z =
+   0.0001    0.0042   -0.2450   -0.0298   -0.0000
+  -0.0005    0.3265   -5.6803   -0.4405    0.0036
+  -0.0365   -2.7736    0.9810    3.2695    0.0331
+  -0.0031    0.4784    7.9966    1.1853    0.0044
+   0.0000    0.0312    0.2999    0.0320    0.0000
+
+
+在-4<=x<=4,-4<=y<=4区域上绘制z=x^2+y^2的三维网格图。
+
+[x,y]=meshgrid(-4:0.125:4);
+z=x.^2+y.^2;
+meshc(x,y,z)
+
+
+绘制高斯分布函数的网格图。
+
+[x,y]=meshgrid(-3:0.125:3);
+z=peaks(x,y);
+meshz(x,y,z)
+
+
+
+
+
+
+用surf绘制高斯分布函数的曲面图。
+
+[x,y]=meshgrid(-3:0.125:3);
+z=peaks(x,y);
+surf(x,y,z)
+
+
+
+绘制曲线图。
+t=[0:pi/200:10*pi];
+x=2*cos(t);
+y=3*sin(t);
+z=t.^2;
+plot3(x,y,z)
+
+
+
+
+利用peaks函数产生的数据绘制其带形图。
+[x,y]=meshgrid([-2*pi:pi/5:2*pi],[-2:1/5:2]);
+z=peaks(x,y);
+ribbon(y,z)
+
+
+绘制三维饼图。
+A=[1 2 3;4 5 6;7 8 9];
+ex=[1 0 0;4 0 0;0 8 0];
+pie3(A,ex)
+
+
+在各种style参数的条件下绘制矩阵的三维条形图。
+z=[1 2 3;4 5 6;7 8 9];
+bar3(z,'detached')
+title('bar3函数以detached参数绘制A=[1 2 3;4 5 6;7 8 9]的条形图')
+bar3(z,'grouped')
+title('bar3函数以grouped参数绘制A=[1 2 3;4 5 6;7 8 9]的条形图')
+bar3(z,'stacked')
+title('bar3函数以stacked参数绘制A=[1 2 3;4 5 6;7 8 9]的条形图')
+
+
+绘制柱形图。
+t=[0:pi/50:2*pi];
+[x,y,z]=cylinder(t.*sin(t));
+surf(x,y,z)
+cylinder(t.^2)
+title('cylinder(t^2)绘制的柱形图')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+绘制三维散点图。
+x=rand(500,1);
+y=randn(500,1);
+z=randn(500,1);
+scatter3(x,y,z,'p','r')
+
+
+绘制三维火柴杆图。
+x=[1:0.5:20];
+y=sqrt(x);
+z=sqrt(x.^2+y.^2);
+stem3(x,y,z,'filled')
+
+绘制高斯分布函数的三维瀑布图。
+[x,y]=meshgrid(-4:0.05:4);
+z=peaks(x,y);
+waterfall(x,y,z)
+
+
+绘制等值线图。
+[x,y]=meshgrid(-3:0.1:3);
+z=2-x.^2-y.^2;
+contour3(z,20)
+
+
+绘制一个球面。
+[x,y,z]=sphere(40);
+surf(x,y,z)
+
+
+绘制三角形网格图和三角形表面图。
+[x,y]=meshgrid(-3:0.5:3);
+z=x.*exp(-x.^2-y.^2);
+tri=delaunay(x,y);
+%建立三角形网格
+trimesh(tri,x,y,z)
+trisurf(tri,x,y,z)
+
+
+绘制一个三维彗星图。
+t=[-3*pi:pi/100:3*pi];
+x=3.*cos(t);
+y=2.*sin(t);
+z=t.^2;
+comet3(x,y,z)
+
+
+绘制曲面z的表面法向量向量图。
+[x,y]=meshgrid([-3:0.2:3],[-2:0.5:2]);
+z=x.*exp(-x.^2-y.*2);
+=surfnorm(x,y,z); %计算表面法向向量
+quiver3(x,y,z,u,v,w,1.2) %绘制三维向量图
+hold on
+surf(x,y,z)
+hold off
+
+
+绘制空间立体在-2<=x<=2, -2<=y<=2, -2<=z<=2上的切片图。
+[x,y,z]=meshgrid(-2:0.2:2);
+v=x.*exp(-x.^2-y.^2-z.^2);
+xi=[-1.2 0.8 2];yi=2;zi=[-2 -0.2];
+slice(x,y,z,v,xi,yi,zi)
+
+
+在【-pi,pi】上制作一个不断绘制正弦曲线的动画。
+x=[-pi:0.02:pi];
+y=sin(x);
+h=plot(x,y,'r-')
+h =
+ 171.0011
+
+axis([-4 4 -1 1])
+axis square
+grid off
+set(h,'erasemode','xor','markersize',10)
+while1
+drawnow
+x=x+0.01;
+y=sin(x)-0.01;
+set(h,'xdata',x,'ydata',y)
+if(x>pi)|(y<-1)
+x=[-pi:0.02:pi];
+y=sin(x);
+end
+end
+
+
+创建一个三维曲面z=x^2+y^2的动画。
+
+x=[-2:0.2:2];
+[x1,y1]=meshgrid(x);
+z=x1.^2+y1.^2+eps;
+surf(z);
+ta=axis;
+ft=moviein(40);
+fori=1:40
+surf(sin(2*pi*i/20)*z,z)
+axis(ta)
+ft(:,i)=getframe;
+end
+movie(ft,20)
+
+
+
+
+通过调整Z的数值来建立peaks函数的动画。
+
+z=peaks;
+surf(z);
+axis tight
+set(gca,'nextplot',
+'replacechildren');
+fori=1:20
+surf(sin(2*pi*i/20)*z,z)
+f(i)=getframe;
+end
+movie(f,30)
+
+
+cool色图+faceted系统默认颜色阴影和默认色图jet+interp颜色阴影绘制peaks函数图。
+
+z=peaks;
+surf(z)
+colormap(cool)
+shadingfaceted
+
+z=peaks;
+surf(z)
+colormap(jet)
+shadinginterp

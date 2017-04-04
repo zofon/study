@@ -1,0 +1,21 @@
+\documentclass[a4paper,12pt]{ctexart}
+\usepackage[margin=2cm]{geometry}%设计边缘的大小
+\usepackage{graphicx}%添加图片
+\usepackage{subfigure}%添加子图
+\usepackage{float}%固定图片位置
+\usepackage[colorlinks,linkcolor=black]{hyperref}%colorlinks启用链接颜色，linkcolor指定对应的颜色
+\pagestyle{empty}%去除页眉页脚和页码
+
+
+\begin{document}
+
+\begin{center}
+\textbf{The NorNet Core Testbed实验手册 for linux in ubuntu}
+\end{center}
+
+\tableofcontents
+
+\newpage
+\section{*}
+
+\end{document} 

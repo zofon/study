@@ -1,0 +1,344 @@
+
+\documentclass[a4paper,11pt]{article}
+\usepackage{CJK,amsmath,amsthm,amssymb,graphicx,fancyhdr,amscd,epic,curves}
+\usepackage[top=1in,bottom=1in,left=1.1in,right=1in]{geometry}
+\usepackage{indentfirst}
+\usepackage{titlesec}
+\titleformat{\section}{\LARGE\bfseries}{\thesection.}{0.2em}{}
+\titleformat{\subsection}{\Large\bfseries}{\thesubsection}{0.2em}{}
+\numberwithin{equation}{section}
+\renewcommand{\thetable}{\textbf{\arabic{section}-\arabic{table}}}
+\renewcommand{\thefigure}{\textbf{\arabic{section}-\arabic{figure}}}
+\makeatletter
+\begin{document}
+\begin{CJK*}{GBK}{song}
+\newtheorem{dingli}{~~~~\textbf{定理}}[section]% 定义定理
+\newtheorem{yinli}{~~~~\textbf{引理}}[section]%定义引理
+\newtheorem{tuilun}{~~~~\textbf{推论}}[section]% 定义推论
+\newtheorem{zhuji}{~~~~\textbf{注记}}[section]%定义注记
+\newtheorem{dingyi}{~~~~\textbf{定义}}[section]
+\newtheorem{li}{~~~~\textbf{例}}[section]%定义例子
+\renewcommand\figurename{\large\textbf{图形}}
+\renewcommand\tablename{\large\textbf{表}}
+\linespread{1.6}{
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=9.47cm,height=2.70cm]{logo.jpg}
+\end{figure}
+\begin{center}
+\Huge\textbf{本~~科~~生~~毕~~业~~论~~文}\\
+\vspace{5.6cm}\LARGE{\begin{CJK*}{GBK}{hei}题目: \underline{\textbf{Peano存在性定理在常微分方程中的应用}}\end{CJK*}}%输入题目
+\\
+\vspace{3.1cm}
+\begin{flushleft}
+\Large{\hspace{3.6cm}姓~~~~~~名: \underline{~~~~~~~~~闫静叶~~~~~~~~~}%输入姓名
+\\
+\hspace{3.6cm}学~~~~~~号: \underline{~~~~201005010159~~~~~}%输入学号
+\\
+\hspace{3.6cm}专~~~~~~业: \underline{~~~~~~~应用数学~~~~~~~~}%输入专业
+\\
+\hspace{3.6cm}年~~~~~~级: \underline{~~~~~~~~2010 级~~~~~~~~~}%输入年级
+\\
+\hspace{3.6cm}学~~~~~~院: \underline{~~数学与统计学院~~~}%输入院系
+\\
+\hspace{3.6cm}完成日期: \underline{2014~年~4~月~28~日~~}%输入日期
+\\
+\hspace{3.6cm}指导教师: \underline{~~~~徐景实~教授~~~~~~}}%输入指导教师
+\end{flushleft}
+\thispagestyle{empty}
+\end{center}}
+\newpage
+~\thispagestyle{empty}\newpage
+\linespread{2.1}{
+\begin{center}
+\begin{CJK*}{GBK}{fs}\LARGE{\textbf{本科生毕业论文独创性声明}}\end{CJK*}
+\end{center}
+\vspace{28pt}
+\begin{CJK*}{GBK}{fs}\Large{~~~~~~本人声明所呈交的毕业论文是本人在导师指导下进行的研究工作及取得的研究成果，
+除了文中特别加以标注和致谢的地方外，本论文中没有抄袭他人研究成果和伪造数据等行为 。 与我一同工作的同志对本研究所做的任何贡献均已在论文中作了明确的说明并表示谢意。}
+
+\vspace*{1.2cm}\Large{~~论文作者签名: \underline{~~~~~~~~~~~~~~~~~~~~~}~~~~~~日期: \underline{~~~~~~~~~~~~~~~~~~~~~}}\end{CJK*}\\
+\vspace*{1.2cm}
+\begin{center}
+\begin{CJK*}{GBK}{fs}\LARGE\textbf{本科生毕业论文使用授权声明}\end{CJK*}
+\end{center}
+\vspace{28pt}
+\begin{CJK*}{GBK}{fs}\Large{~~~~~~海南师范大学有权保留并向国家有关部门或机构送交毕业论文的复印件和磁盘，
+允许毕业论文被查阅和借阅。本人授权海南师范大学可以将本毕业论文的全部或部分内容编入有关数据库进行检索，可以采用影印、
+缩印或其他复印手段保存、汇编毕业论文。}
+
+\vspace*{1.2cm}\Large{~~论文作者签名: \underline{~~~~~~~~~~~~~~~~~~~~~}~~~~~~日期: \underline{~~~~~~~~~~~~~~~~~~~~~}
+
+\vspace*{0.8cm}
+~~指导教师签名: \underline{~~~~~~~~~~~~~~~~~~~~~}~~~~~~日期: \underline{~~~~~~~~~~~~~~~~~~~~~}}\end{CJK*}}
+\pagenumbering{Roman}
+\newpage
+~\pagenumbering{Roman}\thispagestyle{empty}\newpage
+\linespread{1.1}{\def\contentsname{\begin{CJK*}{GBK}{kai}\begin{center}\huge\textbf{目~~~~录}\end{center}\end{CJK*}}
+\LARGE\tableofcontents}
+\newpage
+~\thispagestyle{empty}\newpage
+\pagenumbering{arabic}
+\linespread{2.1}
+\begin{center}
+\huge\textbf{Peano存在性定理在常微分方程的应用}%输入中文题目
+\\
+\Large{\begin{CJK*}{GBK}{fs}作者: 闫静叶~~~指导教师: 徐景实~教授\end{CJK*}}%输入作者和指导教师
+\\
+\large{(海南师范大学数学与统计学院, 海口, 571158)}
+\end{center}
+{\renewcommand\baselinestretch{1.4}\selectfont
+\textbf{摘要:}
+\begin{CJK*}{GBK}{fs}
+本文先回顾了Peano存在性定理, 然后给出了Peano存在性定理在常微分方程中的一些应用.
+\end{CJK*}
+\\
+\textbf{关键词:}
+\begin{CJK*}{GBK}{fs}
+Peano存在性定理; 常微分方程; 应用
+\end{CJK*}\par}
+\begin{center}
+\Large\textbf{Applications of the Peano Existence Theorem in Ordinary Differential Equations}% 输入英文题目
+\\
+\large{Author: Yan Jingye~~~~Tutor:Professor Xu Jingshi %输入者和指导教师（英文名）
+\\
+(School of Mathematics and Statistics, Hainan Normal University, Haikou, 571158)}
+\end{center}
+{\renewcommand\baselinestretch{1.4}\selectfont
+\textbf{Abstract:} In this paper, firstly we review the Peano existence theorem, then we describe some applications of it in ordinary differential equations. \\
+\textbf{Keywords:} The Peano existence theorem; ordinary differential equation; application\par}
+{\renewcommand\baselinestretch{1.6}\selectfont
+\section{引言}
+\large 微分方程的应用十分广泛，不仅可以解决许多与导数有关的数学问题，而且微分方程在物理科学、化学、工程学、经济学和人口统计等领域应用也非常广泛。由于物理学，电磁学、流体力学、量子力学等运用了微分方程的理论，使得物理学得到了迅速发展。微分方程也可以解决无线电技术方面的问题，使得非线性振动理论得到迅猛的发展。在拓扑学中，微分方程也得到了广泛的应用，如利用闭轨和集合来判断结构稳定性。在经济学中，微分方程可以解决有关经济量的变化、变化率问题。
+微分方程还可以应用到力学、石油钻探等工业生产的实际问题中, 可以帮助人们解决实际问题, 推动技术不断发展进步。
+
+本课题, 我们先回顾Peano存在性定理的证明, 然后利用它和逐步逼近的方法讨论了一些常微分方程的近似解.
+
+
+\section{定理、推论、引理的陈述}
+常微分方程最著名的存在性定理是如下的${\rm Peano}$存在定理, 见参考文献\cite{w}.
+\begin{dingli}[Peano存在定理]
+  如果$f(x, y)$在$D$内连续, $(\xi, \eta)$是$D$中任一点, 则微分方程$y'=f(x, y)$ 至少有一个解通过$(\xi, \eta). $ 且每个解都可以从左端或者右端延拓到$D$的边界(每个解可以任意延拓到$D$ 的边界).
+\end{dingli}
+为了完成${\rm Peano}$存在定理的证明,需要如下一些额外的概念和引理:
+\begin{dingyi} 区间$J=[a, b]$上连续函数集合$M$称为等度连续的, 若任意$\varepsilon>0, $ 存在$\delta=\delta(\varepsilon)>0, $ 使得任意的$f\in M , $任意的$x, y\in J, $ 只要$\mid x-y\mid <\delta, $ 就有$\mid f(x)-f(y)\mid <\varepsilon. $
+\end{dingyi}
+下面例题见参考文献\cite{w}.
+\begin{li} 若存在常数$L>0, $使得
+\[\mid f(x)-f(y)\mid <L\mid x-y \mid, \]任意的$x, y\in J, f\in M, $
+则称$f$为${\rm Lipschitz}$函数, $L$称为$f$的${\rm Lipschitz}$常数.
+
+若$M$是$J$上所有满足${\rm Lipschitz}$常数为$L$的函数的全体, 则$M$是等度连续的. 显然 $\delta(\varepsilon)=\displaystyle\frac{\varepsilon}{L}$成立.
+\end{li}
+
+\begin{yinli}
+假定$Q=[a, b], B$是$Q$的一个稠密子集. 若函数列$\{f_{n}(x)\}(n=1, 2,... )$在$Q$ 中是等度连续的, 且在$B$中任意点收敛, 则此函数列在$Q$上一致收敛于$f(x), $因此$f(x)$ 在$Q$ 上是连续的. 如果$Q$的每个子区间至少包含$B$的一个点, 那么一组点集$B$在$Q$ 中是致密的, 比如: $B=Q$ 中的所有有理数集.
+\end{yinli}
+
+\begin{proof}[\bf 证明]
+任意的$\varepsilon>0, $存在$\delta=\delta(\varepsilon)>0$, 对所有的函数$f_{n}(n\geq1)$ 满足\[\mid f(x)-f(y)\mid <\varepsilon , \mid x-y\mid <\delta , (x, y \in Q)\]
+把区间$Q$分割成$p$个小区间$Q_{1}, Q_{2}, Q_{3}... Q_{p}$. 每个子区间$Q_{i}$ 的长度小于$\delta$ . 对于每个$Q_{i}$，选取一个$x_{i}\in Q_{i}\cap B$ (对每个$i$至少存在一点$x_{i}$ ). 则存在$n_{0}=n_{0}(\varepsilon)$ , 使得\[\mid f_{m}(x_{i})-f_{n}(y_{i})\mid < \varepsilon , m, n\geq n_{0}, i=1, 2..., p \]
+对任意的$x \in Q, $ 存在$q$使得任意的$x \in Q_{q}, $ 有$\mid x-x_{q}\mid<\delta, $ 从而有
+\[\mid f_{m}(x)-f_{n}(x)\mid \leq \mid f_{m}(x)-f_{m}(x_{q})\mid+\mid f_{m}(x_{q})-f_{n}(x_{q})\mid+\mid f_{n}(x_{q})-f_{n}(x)\mid<3\varepsilon. \]
+即证 $f_{n}(x)$在$Q$中是一致收敛的.
+\end{proof}
+
+
+我们需要下面的著名定理, 为了完整起见我们给出它的证明.
+
+\begin{dingli}[Ascoli-Arzel\`{a}定理]
+在$C(J)$中一个有界的且等度连续的函数列一定存在一个在$J$上一致收敛的子列.
+\end{dingli}
+
+\begin{proof}[\bf 证明] 任取$A=\{x_1, x_2, ... \}$为$J$的一个可数稠密子集. 比如$A$ 取为$J$中的有理数集. 由于数列 $\{a_n=f_n(x_1)\}_{n\in \mathbb{N}}$是有界的, 因此存在着一个收敛的子序列$f_{p_{1}}(x_{1}), f_{p_{2}}(x_{1}), f_{p_{3}}(x_{1}), ... $ 同理, 有界的数列$b_{n}=f_{p_{n}}(x_{2})$有一收敛的子序列$\{f_{q_n}(x_{2})\}_{n\in \mathbb{N}}. $
+ 注意到$\{q_{n}\}$是$\{p_{n}\}$ 的一个子序列. 序列$c_{n}=f_{q_{n}}(x_{3})$ 仍然是有界的, 因此有一个收敛的子序列$f_{r_{1}}(x_{3}), f_{r_{2}}(x_{3}), ...$ 继续做下去可得到如下一系列形式的序列
+
+$f_{p_{1}}, f_{p_{2}}, f_{p_{3}}, f_{p_{4}},... $当$x=x_{1}$时收敛;
+
+$f_{q_{1}}, f_{q_{2}}, f_{q_{3}}, f_{q_{4}},... $当$x=x_{1}, x=x_{2}$时收敛;
+
+$f_{r_{1}}, f_{r_{2}}, f_{r_{3}}, f_{r_{4}},... $当$x=x_{1}, x=x_{2}, x=x_{3}$ 时收敛;
+
+$\dots$
+
+对任意的$k>1$时, 第$k$行数列就是前$k-1$行的子序列, 且当$x=x_{1},..., x_{k}, $第$k$ 行数列收敛.
+遵循对角序列, $f_{p_{1}}(x), f_{q_{2}}(x), f_{r_{3}}(x),... $对任意的$x=x_{k}$都收敛.
+即对任意的$x\in A$，由于至少从第$k$行开始, 它都是第$k$行的子序列($k=1, 2,... $). 此对角序列一致收敛是遵循上面的引理的.
+\end{proof}
+
+首先我们先简单的证明${\rm Peano}$存在定理.
+\begin{dingli}
+设函数$f(x, y)$在$S=J\times R, J=[\xi, \xi+a] , a>0$. 则在$J$上至少存在一个可微的函数$y(x)$, 使得$y'=f(x, y)$, 在$J$ 上，$y(\xi)=\eta. $(由此可得$y(x)$在$J$上是连续可微的)
+\end{dingli}
+\begin{proof}[\bf 证明]要想证明定理就要找到$y(x)\in C(J), $ 满足\[y(x)=\eta+\int_{\xi}^{x}f(t,y(t))dt\in J. \]
+
+
+
+任意的$\alpha >0$, 我们来构造一个近似解 $z_{\alpha}(x)\in C(J)$, 满足
+\[z_{\alpha}(x)=\begin{cases}\eta,&\ x\leq\zeta \\
+\eta+\int_{\xi}^{x}f(t,z_{\alpha}(t-\alpha))dt, & \ x\in J
+\end{cases}, \] 上式中的$z_{\alpha}(x), x\leq\xi+\alpha. $
+\\ 实际上, 如果在被积函数中$ \xi\leq x \leq \xi+\alpha, t-\alpha \leq \xi, z_{\alpha}(t-\alpha)\equiv\eta $.
+
+所以, $z_{\alpha}(t-\alpha)$ 是由先前的步骤决定的, 这个积分是会确定的. 经有限步后, 我们建立了一个积分方程\[z_{\alpha}(x)=\begin{cases}\eta, &\ x\leq\zeta \\
+\eta+\int_{\xi}^{x}f(t, z_{\alpha}(t-\alpha))dt, & \ x\in J
+\end{cases}, \] 满足$|f|\leq c , |z_{a}'|\leq c$ , 函数 $z_{\alpha}(x)$ 满足${\rm Lipschitz}$条件$|z_{\alpha}(x)-z_{\alpha}(x ')|\leq c|x-x'|$. 若记$M$为$C(J)$ 中函数$z_{\alpha}$ 的全体, 则$M$ 是等度连续的. 因此, 由{\rm Ascoli-Arzel\`{a}} 定理知, 序列$z_{1}(x), z_{\frac{1}{2}}(x), z_{\frac{1}{3}}(x),...$  存在一致收敛的子序列$\{z_{\alpha_{n}}(x)\}(n=1, 2, 3,..., \alpha_{n}\rightarrow 0)$ , 简单的记为 $z_{n}(x)$ , 记它们的极限为$y(x)$, 则由\[z_{\alpha}(x)=\begin{cases}\eta, &\ x\leq\zeta \\
+\eta+\int_{\xi}^{x}f(t,z_{\alpha}(t-\alpha))dt, & \ x\in J
+\end{cases}, \] 得$z_{n}(x)=\eta+\int_{\xi}^{x}f(t, z_{n}(t-\alpha_{n}))dt. $
+由于\[|z_{n}(t-\alpha_{n})-y(t)|\leq |z_{n}(t-\alpha_{n})-z_{n}(t)|+|z_{n}(t)-y(t)|\leq c\alpha_{n}+|z_{n}(t)-y(t)|. \]所以, $z_{n}(t-\alpha_{n})$在$J$中一致收敛于$y(t)$, 所以$f(t, z_{n}(t-\alpha_{n}))$ 一致收敛于$f(t, y(t))$.（$f(x,y)$在有界集上是一致连续的）因此对\[z_{n}(x)=\eta+\int_{\xi}^{x}f(t, z_{n}(t-\alpha_{n}))dt, \] 取极限得等式$y(x)=\eta+\int_{\xi}^{x}f(t,y(t))dt \in J. $\\
+\end{proof}
+${\rm Peano}$存在性定理可以在${\rm Lipschitz}$例子中使用.
+下面定理见参考文献\cite{w}.
+\begin{dingli}
+如果$f$在矩形$R: \xi \leq x\leq\xi+\alpha, |y-\eta|\leq b$连续, $y'=f(x, y), y(\xi)=\eta$ 在区间$\xi \leq x\leq\xi+\alpha, \alpha=\min(a, \displaystyle\frac{b}{A}), A=\max|f|$内至少存在一个解, 这个结论同样适用于一个矩形的左端$\xi$.
+\end{dingli}
+
+    一个积分曲线穿过$D$的每个点, 这是${\rm Peano}$存在性定理的第一部分.
+
+    第二部分, 对每个点都可以扩充到边界这个定理的证明稍难, 因为我们没有一个独特性的陈述.
+
+    我们只能讨论可扩充到右端.
+
+    我们首先证明下面的结论:
+\begin{tuilun}
+$(Z)$如果$\phi$ 是区间$\xi\leq x< b$的一个解, $A$是$D$的一个致密子集, 那么$\phi$  可能会超过$A$ 的界限, 存在一个延拓$\phi'$  到右端, $\phi'\nsubseteq A. $
+\end{tuilun}
+
+\begin{proof}[\bf 证明]
+集合$A$到$D$的距离是确定的, $3\rho>0$(如果$D=R^2$ , 可取 $\rho=1$). 如果$A_{2\rho}$ 是那些距$A$ 的距离$\leq 2\rho$的点的集合, 那么 $A_{2\rho}$也是$D$的一个致密子集. 因此, $f$在$A_{2\rho}$ 中有界, $|f|\leq c$. 用$R(x_{0}, y_{0})$表示矩形: \[x_{0}\leq x\leq x_{0}+\rho, |y-y_{0}|\leq\rho . R(x_{0},y_{0})\subset A_{2\rho}, \] 任意的$(x_{0}, y_{0})\in A$,
+如果$\phi\subset A$, 将$\phi$扩充到$[\xi, b]$, 在上面定理中矩形$R(b, \phi_{b}), $ 继续将$\phi$ 扩充到右端. 因此会存在一个解$x, $\[b\leq x\leq b+\alpha=: b_{1}, \alpha: =\min(\rho, \displaystyle\frac{\rho}{c}). \] 如果这个延拓一直在$A$ 中, 这个程序一直按照$R(b_{1} , \phi(b_{1} )) $重复. 由于每一步中存在区间都是按照一个固定数字$\alpha>0$ 增长的（只要 $\phi\subset A$）按照这个方法, 这个解可以经过有限步后超越$A,$即证$(Z). $
+\end{proof}
+
+这个证明直截了当, 我们认为一个致密的序列$\{A_{n}\}$满足$A_{n}\subset A_{n+1}\subset D$. 对于所有的$n$适用, 每个密集$B\subset D$ 都包含在每个$A_{n}$ 中.（如, 假设$A_{n}$ 是$D$中距$D$的边界$\geq 1/n$，距端点$\leq n$的点的集合）假设$\phi$为一个区间的一个解, 其中$\phi(\xi)=\eta$. 这个区间 $\phi$可达到右端 $\xi$ 处, 但不能达到$D$ 的边界. 因此, $\overline{graph\phi}$ 是$D$ 的一个致密子集, $graph\phi\subset A_{p}, $对任一个合适的$p$.
+
+我们使用结论$(Z)$继续将$\phi$超越$A_{p}$，并称此延拓为$\phi_{p}$: 它存在于一个区间$J_{p}=[\xi, b_{p}]$. 现在来构造$\phi_{p+1}$: 如果$\phi_{p}$不完全属于$A_{p+1}$, 我们令$\phi_{p+1}=\phi_{p}$; 若$\phi_{p}$在$A_{p+1}$中, 我们继续将$\phi_{p}$向右延拓, 直到离开$A_{p+1}$，并称其为$\phi_{p+1}$, $\phi_{p+1}\subset[\xi, b_{p+1}], b_{p+1}>b_{p}. $
+按照此方法, 继续归纳.
+
+一个函数列$\{\phi_{n}\}, \phi_{n}$  定义在 $[\xi, b_{n}], \{b_{n}\}$是一个单调递增的子序列, 如果$p\leq n< m$ , 那么在 $J_{m}$上, $\phi_{m}\equiv\phi_{n}. $
+
+因此, 由${\rm Lemma}$ 定理, 在$[\xi,b), $ 确实存在着一个解$y, y|_{y_{n}}=\phi_{n}, n\geq p, $ \[b=\lim_{n \rightarrow \infty}b_{n}(b_{n}=\infty). \]
+
+ 函数$y$是定理结论中所提到的$\phi$ 延拓到右端的一个解. 显然, 曲线$y$不完全包括在任意的$A_{n}$ 中, 因此也不包含在$D$的任意致密子区间中.
+
+ 在${\rm Peano}$存在性定理的证明中, 我们由积分关系
+\[z_{\alpha}(x)=\begin{cases}\eta, &\ x\leq\zeta. \\
+\eta+\int_{\xi}^{x}f(t, z_{\alpha}(t-\alpha))dt, & \ x\in J
+\end{cases}, \] 计算出一个近似解$z_{\alpha}$ , 另一个求近似解常用的方法是:
+
+下定理见参考文献\cite{w}.
+\begin{dingyi}[Euler-Cauchy折线方法]
+假定: $x_{i}=\xi+\alpha_{i}(i=0, 1, 2,...), \xi=x_{0}\leq x\leq x_{1}$, 令$u_{\alpha}(x)=\eta+(x-x_{0})f(\xi, \eta); u_{\alpha}$ 是经点$(\xi, \eta)=(x_{0}, y_{0})$ 且斜率为 $f(x_{0}, y_{0}$)的直线. 当 $x_{1}\leq x \leq x_{2}$时, $u_{\alpha}$是经点$(x _{1}, y_{1})=(x_{1}, u_{\alpha}(x_{1}))$ 斜率为$f(x_{1}, y_{1})$ 的一条直线. 总体而言，经过$p$ 步到达点 $(x_{p},y_{p}),y_{p}=u_{\alpha}(x_{p})$. 当$x_{p}\leq x\leq x_{p+1}$ 时, $u_{\alpha}$ 是过点 $(x_{p},y_{p})$斜率为$f(x_{p}, y_{p})$的一条直线. 用这种方法, 可以通过上面对折线逼近$u_{\alpha} (\alpha>0)$ 找到问题$y'=f(x,y)\in J, y(\xi)=\eta $ 的解.
+\end{dingyi}
+下定理见参考文献\cite{L1}.
+\begin{dingyi}
+假设E是线性赋范空间$X$的一个子集, 又设$T: E\rightarrow X$是一个连续映射且将$E$中的有界集映为列紧集, 则称$T$为紧的.
+\end{dingyi}
+下定理见参考文献\cite{L2}.
+\begin{dingli}[Schauder解存在定理]
+假设$D$在${\rm Banach}$空间中是一个致密的凸集. $F: D\rightarrow D $ , $F$是$D$内一个连续且紧的函数, $F(D)\subset D, $ 则在$D$内$F$必有一个不动点.
+\end{dingli}
+由此定理的如下推论:
+
+\begin{tuilun}
+假设$D$是线性赋范空间$X$的一个有界闭凸子集, 又设$F: D\rightarrow D $ , 是紧的, 则在$D$内$F$必有一个不动点.
+\end{tuilun}
+\section{应用}
+\begin{li}
+假设$g(x)$是连续函数, “核”$k(x, t, z)$也是连续的, $0\leq t \leq x\leq a, -\infty<z <\infty, $ 并且满足增长条件$|k(x, t, z)|\leq L(1+|z|)$. 证明${\rm Volterra}$ 积分方程$y(x)=g(x)+\int_{0}^{x}k(x,t,y(t))dt $ 在区间$J=[0, a]$ 至少有一个连续解.
+\end{li}
+\begin{proof}[\bf 证明]
+假设$C=\max|g(x)|, D=\{v\in C(J): |v(x)|\leq \rho(x)\in J\}, \rho'=L(1+\rho), \rho(0)=C. $ \\ 任意的$u_{1}, u_{2}\in D, 0<\lambda<1, $函数$\lambda u_{1}+(1-\lambda)u_{2}\in C(J). $\\
+\[|\lambda u_{1}(x)+(1-\lambda)u_{2}(x)|\leq \lambda |u_{1}(x)|+(1-\lambda)|u_{2}(x)|\leq \lambda \rho(x)+(1-\lambda)\rho(x)=\rho(x). \]
+所以$D$为凸集. 任意的$u \in D, Tu=u(x)+\int_{0}^{x}k(x, t, x(t))dt $在$[0, a]$ 上连续.
+\begin{align*}
+|Tu(x)|&\leq |u(x)|+\int_{0}^{x}L(1+|x(t)|)dt\\
+&\leq |u(x)|+\int_{0}^{x}L(1+\rho(x))dt\\
+&\leq \rho (0)+\int_{0}^{x}L(1+\rho(t))\\
+&=\rho(x),
+\end{align*}
+ 则$Tu\in D. $ 对任意的$u, v\in D , $ 因为$k$连续, 所以对任意的$ \varepsilon >0$, 存在 $\delta >0, $ 使得$ |u-v|<\delta . $ 则\[|k(x, t, u)-k(x, t, v)|<\frac{\varepsilon}{a}. \]
+\begin{align*}|Tu(x)-Tv(x)|&\leq |\int_{0}^{x}[k(x, t, u(t))-k(x, t, v(t))]dt|\\
+&\leq \int_{0}^{x}|k(x, t, u(t))-k(x, t, v(t))|dt\\
+&\leq \frac{\varepsilon}{a} \int_{0}^{x}dt\\
+&\leq\varepsilon,
+\end{align*}
+所以$T$连续.
+
+再证$T$是紧的.
+
+因为$|Tu(x)|\leq \rho(x)$，$\rho(x)$连续, 则$\rho(x)$在$[0, a]$上有界. 所以$Tu(x)$ 有界. \\
+任意的$\varepsilon>0, $存在$\delta(\varepsilon). $任意的$u(x), v(x)\in D, |u(x)-v(x)|<\delta. $ 令$\delta=\displaystyle\frac{\varepsilon}{aL}. $
+\begin{align*}|Tu(x)-Tv(x)|&=|\int_{0}^{x}k(x, t, u(t))-k(x, t, v(t))dt|\\
+&\leq\int_{0}^{x}|k(x, t, u(t)-k(x, t, v(t)|dt\\
+&\leq\int_{0}^{x}L|u(t)-v(t)|dt\\
+&\leq aL\delta\\
+&=\varepsilon, \end{align*}
+即证$T$等度连续. 所以$T$是紧的, 由${\rm Schauder}$ 解存在定理可知有解.
+\end{proof}
+\begin{li}
+设$y_{0}=\alpha x^2(\alpha >0)$为迭代逼近$y'=2x-2\sqrt{y_{+}},y(0)=0, y_{+}=\max\{y, 0\}$ 的起点, $y_{1}=\phi(\alpha)x^2, y_{2}=\phi(\alpha_{1})x^2,... y_{n}=\alpha_{n}x^2$. 故, $\alpha_{0}=\alpha, \alpha_{n}=\phi(\alpha_{n-1}), (n=0, 1, 2,... )$, 确定$\phi$, 证明并计算出$\phi$ 有一个不动点$\overline{\alpha}(\overline{\alpha}=\phi(\overline{\alpha})). $
+
+\end{li}
+\begin{proof}[\bf 证明]
+原方程等价于如下积分方程：
+\[y=x^2-2\int_{0}^{x}\sqrt{y_{+}}dt, \] $y_{1}=x^2-2\int_{0}^{x}\sqrt{\alpha t^2}dt
+=x^2-2\sqrt{\alpha}\int_{0}^{x}tdt=(1-\sqrt{\alpha})x^2, $
+所以$\alpha_{1}=\phi(\alpha_{0})=1-\sqrt{\alpha},
+y_{2}=x^2-2\int_{0}^{x}\sqrt{1-\sqrt{\alpha}}tdt
+=(1-\sqrt{1-\sqrt{\alpha}})x^2, $
+所以$\alpha_{2}=1-\sqrt{\alpha_{1}}=1-\sqrt{1-\sqrt{\alpha}}. $
+ 同理可知, $\alpha_{n}=\phi(\alpha_{n-1})=1-\sqrt{\alpha_{n-1}}. $
+假设, $0<\alpha_{1}<\overline{\alpha}, 1>\alpha_{0}>\alpha_{1}. $
+因为 $\alpha_{2}=1-\sqrt{1-\sqrt{\alpha_{0}}}, $
+所以$1-\alpha_{2}=\sqrt{1-\sqrt{\alpha_{0}}}. $
+因为 $1-\alpha_{2}>(1-\alpha_{2})^{2}=1-\sqrt{\alpha_{0}}, $
+所以 $\alpha_{2}<\sqrt{\alpha_{0}}<\alpha_{0}. $
+同理可知\[\alpha_{2n}<\alpha_{2n-2}<... <\alpha_{6}<\alpha_{4}<\alpha_{2}<\alpha_{0}<1. \]
+因为$\alpha_{0}>\alpha_{1}, \alpha_{3}=1-\sqrt{1-\sqrt{\alpha_{1}}}, \alpha_{2}=1-\sqrt{1-\sqrt{\alpha_{0}}}, $
+所以$\alpha_{2}>\alpha_{3}. $ 同理可知, $\alpha_{4}>\alpha_{5},..., \alpha_{2n}>\alpha_{2n+1}. $
+因为$\alpha_{2n-1}=1-\sqrt{\alpha_{2n-2}}, \alpha_{2n+1}=1-\sqrt{\alpha_{2n}}, $\\
+所以$\alpha_{2n-1}<\alpha_{2n+1}, $所以\[0<\alpha_{1}<\alpha_{3}<... <\alpha_{2n-1}<\alpha_{2n}<\alpha_{2n-2}<... <\alpha_{6}<
+\alpha_{4}<\alpha_{2}<\alpha_{0}<1. \]
+所以存在$\overline{\alpha}, $使得$0<\alpha_{1}<\alpha_{3}<... <\overline{\alpha}<... <\alpha_{6}<
+\alpha_{4}<\alpha_{2}<\alpha_{0}<1, \lim  \alpha_{n}=\overline{\alpha}. $
+\end{proof}
+\begin{li}
+用相似方法分析上述问题的左逼近$z(x): =y(-x), z'=2x+2\displaystyle\sqrt{z_{+}}, x\geq 0, z(0)=0$ 用逐步逼近法证明$z=\overline{\beta}x^2$是以$z_{0}=\beta_{0}x^2, \beta_{0}\in R$ 为起点的$z_{n}=\beta_{n}x^2$的解, $\beta_{n+1}=\phi(\beta_{n})$. 这里, $$\lim_{n \rightarrow \infty}\beta_{n}=\overline{\beta}$$
+\end{li}
+\begin{proof}[\bf 证明] 原方程等价于如下的积分方程
+ \[z=x^2+2\int_{0}^{x}\sqrt{z_{+}}dt. \]
+令\[z_{1}=x^2+2\int_{0}^{x}\sqrt{\beta_{0}}tdt
+=x^2+2\sqrt{\beta_{0}}\int_{0}^{x}tdt=(1+\sqrt{\beta_{0}})x^2, \]
+则$\beta_{1}=\phi(\beta_{0})=1+\sqrt{\beta_{0}}. $
+\[z_{2}=x^2+2\int_{0}^{x}\sqrt{1+\sqrt{\beta_{0}}}tdt\\
+=(1+\sqrt{1+\sqrt{\beta_{0}}})x^2 .\]
+所以\[\beta_{2}=\phi(\beta_{1})=1+\sqrt{\beta_{1}}=1+\sqrt{1+\sqrt{\beta_{0}}}. \]
+ 同理可知, $\beta_{n}=\phi(\beta_{n-1})=1+\sqrt{\beta_{n-1}}. $
+ 假设$\displaystyle\frac{3-\sqrt{5}}{2}<\beta_{0}<\frac{3+\sqrt{5}}{2}, $ 因为$\beta_{1}=1+\sqrt{\beta_{0}}, $ 所以
+ \[\beta_{1}\in(1+\sqrt{\frac{3-\sqrt{5}}{2}}, 1+\sqrt{\frac{3+\sqrt{5}}{2}})\subset (\frac{3-\sqrt{5}}{2}, \frac{3+\sqrt{5}}{2}), \]所以，$\beta_{0}<\beta_{1}...$ 同理可知,
+ $\beta_{n}\in(\displaystyle\frac{3-\sqrt{5}}{2},\frac{3+\sqrt{5}}{2}), \beta_{n-1}<\beta_{n}. $
+ 所以, 数列$\{\beta_{n}\}$单调递增, 且有上界.
+由单调有界收敛定理知, 数列${\beta_{n}}$有极限, 设\[\lim_{n \rightarrow \infty}\beta_{n}=\overline{\beta}, \] $z=\overline{\beta}x^2$是以$z_{0}=\beta_{0}x^2, \beta_{0}\in R$为起点的$z_{n}=\beta_{n}x^2$的解,
+$\beta_{n+1}=\phi(\beta_{n}). $
+\end{proof}
+
+\noindent\LARGE\textbf{致谢}
+\addcontentsline{toc}{section}{\textbf{致谢}}
+
+\large{对给予我论文指导的徐景实教授表示感谢.}
+\par}
+\renewcommand\refname{\textbf{参考文献:}}
+\begin{thebibliography}{3}
+\addcontentsline{toc}{section}{\textbf{参考文献}}
+\begin{CJK*}{GBK}{fs}
+\bibitem{w} Wolfgang Walter. Ordinary Differential Equations[M]. Springer-Verlag: 世界图书出版公司, 1998. 73-83.
+\bibitem{L1}徐景实，林诗游. 泛函分析引论[M]. 北京：机械工程出版社, 2014. 31-38.
+\bibitem{L2}赵丽. 浅谈Schauder不动点定理在常微分方程中的应用[J]. 科教文汇(中旬刊), 2008(2): 192.
+\bibitem{L3}郭伟. Ascoli-Arzela定理的一个推广及应用[J]. 系统科学与数学, 2002, 22(1): 115-122.
+\bibitem{L4}曾国清. Cauchy-Peano解的存在性定理的一种证明方法[J]. 科技经济市场, 2006(7): 28.
+\bibitem{L5}张超. Banach不动点定理的推广及应用[J]. 楚雄师范学院学报, 2010(03): 27-30.
+\end{CJK*}
+\end{thebibliography}
+\end{CJK*}
+\end{document}
+

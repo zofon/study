@@ -1,0 +1,7 @@
+sysctl配置与显示在/proc/sys目录中的内核参数．可以用sysctl来设置或重新设置联网功能，如IP转发、IP碎片去除以及源路由检查等。
+
+用户只需要编辑/etc/sysctl.conf文件，即可手工或自动执行由sysctl控制的功能。
+
+常用参数的意义：
+	-w	临时改变某个指定参数的值，如：sysctl -w net.ipv4.ip_forward=1
+	-a	现实所有的系统参数。

@@ -1,0 +1,5 @@
+编辑 /etc/sysctl.conf文件，这个文件的设置是永久有效的。
+sudo vim /etc/sysctl.conf
+
+添加相关的设置：
+net.ipv4.tcp_rmem = 4096        873800  5242880

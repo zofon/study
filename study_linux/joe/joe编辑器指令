@@ -1,0 +1,58 @@
+JOE 编辑器
+
+一.	概述
+JOE 是一种全屏幕的编辑器,它是由 Joseph H. Allen 撰写出来,可用来编辑程序档案及一般文本文件。如果您需要 help , 请按 Ctrl-K-H 后, 会在Windows 最后一行出现 Basic Windows Advanced Options Search Names Joe 等文字, cursor 停留在 Basic 上, 您可以使用左右键选您要 help 的项,再 Return 即可,取消 help 请再按一次 Ctrl-K-H 后即消失。(以下内容所有Ctrl 键,将以 ^ 符号代替,如 Ctrl-K-H 将以 ^KH 取代之)
+
+二.	指令集
+1. 光标控制指令
+^B 往左移一个字符(char) ^F 往右移一个字符
+^Z 往左移一个字(word) ^X 往右移一个字
+^P 往上移一行 ^N 往下移一行
+^A 光标移至行首 ^E 游标移至行尾
+^U 往上移一页 ^V 往下移一页
+^KU 光标移至文件首 ^KV 游标移至文件尾
+^KL 游标移至某行
+2. 删除指令
+^D 删除光标所在的字符 ^Y 删除光标所在的行
+^O 往左删除一个字(word) ^W 往右移珊除一个字
+^J 删除从光标所在字符至行尾
+^- undo ^^ redo
+3. 区块指令
+^KB 寻址区块起始点 ^KK 寻址区块终止点
+^KC 区块拷贝 ^KM 区块般移
+^KW 区块储存 ^KY 区块删除
+4. 搜寻和取代指令
+^KF 寻找字符串
+说明:在屏幕最下面会有一行,提示您输入欲寻找的字符串
+Search string (^C to abort):define
+按后,提示画面如下:
+(I)gnore case (B)ackwards (R)eplace n (^C to abort):
+可输入 I 或 B 或 R
+I: 忽略大小写
+B: 从光标所在位置往前寻找
+R: 将出现另一提示画面要求输入欲取代之字符串
+^L 继续寻找前一次寻找之字符串
+5. 有关 Window 的指令
+^KO 分割画面(把一个画面分割两成二个画面)
+^KI 显示一个窗口或全部窗口
+^KP 将光标移至上一个窗口 ^KN 将光标移至下一个窗口
+^KT 将光标所在的窗口范围缩小 ^KG 将光标所在的窗口范围放大
+6. 读取档案的指令
+^KE 读取档案
+^KR 读取一档案,存入目前开启之档案,光标所在行之后
+7. 存盘与离开 JOE 的指令
+^KX 存档且离开 JOE
+^KD 存档但仍在 JOE 状态下
+^C 不储存被修改之档案,直接离开 JOE
+8. 其它的指令
+^TT Insert/Overtype
+^TA Autoindent on/off
+^TL 设定左边界
+^TR 设定右边界
+^TP 设定 PgUp/PgDn 的行数
+^TD 设定 TAB 的长度
+^KA 使整行文字向中对齐
+^KZ 暂时离开 JOE 到 UNIX 系统下,欲回到 JOE,请输入 fg
+^K, 整个区块(block)或段落(paragraph)向左移一个 bype
+^K. 整个区块(block)或段落(paragraph)向右移一个 bype
+^KO 执行 UNIX 指令 
