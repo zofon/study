@@ -11,22 +11,182 @@
 \begin{document}
 
 \begin{center}
-\huge \textbf{学习数据库及SQL}
+\huge \textbf{数据库}
 \end{center}
 
+\section{数据库理论}
 \section{引言}
-目前和Oracle并列的还有Microsoft和Adobe。
+当前的数据库类型有上千种，目前和Oracle并列的还有Microsoft和Adobe。
 
 数据库最早的来源于一片论文
 
+\section{SQL}
+SQL（Structured Query Language）结构化查询语言。
+\subsection{模式的定义与删除}
+定义SQL模式，以S\_SC\_C为例：
+CREATE SCHEMA <模式名> AUTHRIZATION <用户名> [<CREATE DOMAIN 子句>|<CREATE TABLE 子句>|<CREATE VIEW 子句>|...]\\
+其中[ ]中的内容是可选项。
+
+例：CREATE SCHEMA S\_SC\_C AUTHRIZATION Jin;
+
+删除SQL模式：
+DROP SCHEMA <模式名> {CASCADE|RESTRICT}\\
+{}里面的内容表示二选一
+
+例： DROP SCHEMA S\_SC\_C CASCADE
+
+\subsection{基本表的定义、删除与修改}
+基本表的定义：
+
+\begin{verbatim}
+CREATE TABLE S\_SC\_C.STUDENT           #在S_SC_C这个SQL模式下添加一个表。
+(
+    s#      CHAR(8),
+    sname   CHAR(20)    NOT NULL UNIQUE,      #不能出现空值，且唯一
+    sex     CHAR(2)     NOT NULL DEFAULT '男', #不能出现空值，且默认值为‘男’
+    age     INT,                              #可以为空，且默认值为NULL
+    dept    CHAR(20),                         ##可以为空，且默认值为NULL
+    PRIMARY KEY(s#)
+);
+\end{verbatim}
+同理，下面创建一个SC的基本表：
+\begin{verbatim}
+CREATE TABLE S\_SC\_C.SC
+(
+    s#      CHAR(8),
+    c#      CHAR(8),
+    grade   INT,
+    PRIMARY KEY(s#),
+    FOREIGN KEY(s#)REFERENCES STUDENT(s#),
+    FOREIGN KEY(c#)REFERENCES COURSE(c#)
+);
+\end{verbatim}
+
+
+删除基本表：
+\verb|DROP TABLE S_SC_C CASCADE|
+
+
+\section{Oracle实践}
 \section{Oracle学习}
+\subsection{Oracle安装}
+准备出5G的空间。
+Oracle 8i表示向网络方向发展
+Oracle 9i是Oracle 8i的稳定版，3CD。
+Oracle 10g表示向网格计算（更高效的搜索算法）发展。
+Oracle 11g是10g的稳定版，是最主流的广泛。
+Oracle 12C，最新的版本是，表示云计算（cloud），本次将课使用11g版本。
 
+防止日后的程序乱码，字符集选择UTF-8
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=10cm]{oracle/安装步骤_指定配置_选择字符集.png}
+%  \caption{}\label{}
+\end{figure}
+接下来事例方案选项卡中选择创建具有事例方案的数据库。比较重要。
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=10cm]{oracle/安装步骤_指定配置_选择创建示例方案.png}
+%  \caption{}\label{}
+\end{figure}
 
-\section{最简单的模板}
+接下来是配置口令，不同的管理员可以设置不同的密码，但是现在我们设置一样的密码，我的密码是241833Ab。
 
+四个主要的用户
+\begin{itemize}
+  \item sys 超级管理员
+  \item system 普通管理员
+  \item scott 普通用户
+  \item sh 大数据用户
+\end{itemize}
 
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=10cm]{oracle/安装步骤_指定配置_配置口令.png}
+%  \caption{}\label{}
+\end{figure}
+
+然后就是环境检测，即使环境检测结果有问题也没有关系，可以跳过，进行安装。安装的时候可能会弹出一些错误点击忽略。记得拖滚动条选择SCOTT账号，设置密码。
+安装完成后进行口令管理：
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=10cm]{oracle/口令管理.png}
+%  \caption{}\label{}
+\end{figure}
+最后点击安装完成。
+
+\section{SQLPLUS基本命令}
+打开控制台，输入sqlplus.exe，然后输入账号scott和密码fe：
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=10cm]{oracle/打开sqlplus.png}
+%  \caption{}\label{}
+\end{figure}
+格式调整命令：
+\begin{verbatim}
+SQL> select * from emp;     #不区分大小写，此时显示不清楚，有断行
+SQL> set linesize 300;      #设置每行的宽度
+SQL> set pagesize 30;       #设置每页的行数
+\end{verbatim}
+
+调用记事本命令（将命令打包）：
+\begin{verbatim}
+SQL> ed 文件名称                                    #创建一个记事本，将命令放在里面，批量执行
+SQL> @文件名.sql             #执行该文件
+SQL> @d:\文件名.sql          #执行磁盘上的某个数据库脚本文件
+\end{verbatim}
+
+用户管理命令：
+\begin{verbatim}
+SQL> show user              #显示当前用户
+SQL> conn sys/fe as sysdba  #切换到sys这个用户，fe是密码
+SQL> conn scott/fe          #切换回scott
+\end{verbatim}
+
+调用本地机器命令，但是要在之前加上host.
+\begin{verbatim}
+SQL> host mkdir test
+\end{verbatim}
 \section{引用的例子}
 这是一个引用~\cite{LCN2002}
+
+\section{SQL语法}
+简单查询
+限定查询
+查询排序
+
+scott用户的主要数据表（***）。  一个数据库中有大量的表。
+\begin{verbatim}
+SQL> select * from tab;     #查询某个用户下的所有表
+SQL> desc dept              #查看表的结构
+SQL> select * from dept;    #查看表的内容
+SQL> select * from emp;
+SQL> select * from salgrade;
+\end{verbatim}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=6cm]{oracle/table_dept.png}
+%  \caption{}\label{}
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=14cm]{oracle/table_emp.png}
+%  \caption{}\label{}
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=5cm]{oracle/table_salgrade.png}
+%  \caption{}\label{}
+\end{figure}
+
+DML(**)，又称为DQL
+DDL(**)
+DCL，一般由DBA负责。
+
+简单查询，限定查询，多表查询，统计查询四类查询
+
+简单查询，显示全部的数据行。
+
 
 
 \bibliographystyle{plain}%
