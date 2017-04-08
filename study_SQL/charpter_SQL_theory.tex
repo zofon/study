@@ -1,0 +1,50 @@
+\chapter{数据库理论}
+\section{引言}
+当前的数据库类型有上千种，目前和Oracle并列的还有Microsoft和Adobe。
+
+数据库最早的来源于一片论文
+
+\section{SQL}
+SQL（Structured Query Language）结构化查询语言。
+\subsection{模式的定义与删除}
+定义SQL模式，以S\_SC\_C为例：
+CREATE SCHEMA <模式名> AUTHRIZATION <用户名> [<CREATE DOMAIN 子句>|<CREATE TABLE 子句>|<CREATE VIEW 子句>|...]\\
+其中[ ]中的内容是可选项。
+
+例：CREATE SCHEMA S\_SC\_C AUTHRIZATION Jin;
+
+删除SQL模式：
+DROP SCHEMA <模式名> {CASCADE|RESTRICT}\\
+{}里面的内容表示二选一
+
+例： DROP SCHEMA S\_SC\_C CASCADE
+
+\subsection{基本表的定义、删除与修改}
+基本表的定义：
+
+\begin{verbatim}
+CREATE TABLE S\_SC\_C.STUDENT           #在S_SC_C这个SQL模式下添加一个表。
+(
+    s#      CHAR(8),
+    sname   CHAR(20)    NOT NULL UNIQUE,      #不能出现空值，且唯一
+    sex     CHAR(2)     NOT NULL DEFAULT '男', #不能出现空值，且默认值为‘男’
+    age     INT,                              #可以为空，且默认值为NULL
+    dept    CHAR(20),                         ##可以为空，且默认值为NULL
+    PRIMARY KEY(s#)
+);
+\end{verbatim}
+同理，下面创建一个SC的基本表：
+\begin{verbatim}
+CREATE TABLE S\_SC\_C.SC
+(
+    s#      CHAR(8),
+    c#      CHAR(8),
+    grade   INT,
+    PRIMARY KEY(s#),
+    FOREIGN KEY(s#)REFERENCES STUDENT(s#),
+    FOREIGN KEY(c#)REFERENCES COURSE(c#)
+);
+\end{verbatim}
+
+删除基本表：
+\verb|DROP TABLE S_SC_C CASCADE| 
