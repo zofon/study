@@ -1,4 +1,4 @@
-\documentclass[a4paper,12pt]{ctexart}
+\documentclass[a4paper,12pt]{ctexbook}
 \usepackage[margin=2cm]{geometry}
 \usepackage{graphicx}
 \usepackage{subfigure}
@@ -10,24 +10,10 @@
 %\renewcommand{\thesection}{\chinese{section}}%将“1.1”改为汉字“一”，但是subsection就会变成  六.1 ，比较难看，还是不用比较好。
 \begin{document}
 
-\begin{center}
-\huge \textbf{学习数据库及SQL}
-\end{center}
+\begin{center}\huge \textbf{数据库}\end{center}
 
-\section{引言}
-目前和Oracle并列的还有Microsoft和Adobe。
-
-数据库最早的来源于一片论文
-
-\section{Oracle学习}
-
-
-\section{最简单的模板}
-
-
-\section{引用的例子}
-这是一个引用~\cite{LCN2002}
-
+\input{charpter_SQL_theory.tex}
+\input{charpter_Oracle_practice.tex}
 
 \bibliographystyle{plain}%
 \bibliography{Referenzarchiv}
