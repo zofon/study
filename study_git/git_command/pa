@@ -1,0 +1,12 @@
+#!/bin/bash
+
+for reponsitory_name in git_reference Master_degree_thesis second_thesis jobs
+do
+	echo "enter $reponsitory_name"
+	cd $reponsitory_name
+	git pull
+	cd ..
+	echo "exit $reponsitory_name"
+	echo " "
+done
+echo "====>END<===="
