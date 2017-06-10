@@ -14,19 +14,35 @@
 \tableofcontents
 \newpage
 
-\charpter{R语言介绍}
+\section{R语言介绍}
+R语言和其他的语言之间提供了非常好的接口。
+\begin{itemize}
+  \item R语言对大小写敏感。
+  \item 基本的命令是表达式或者赋值。
+  \item 命令可以被；隔开。
+  \item 注释符号用\#
+  \item 
+  \item 
+  \item 
+\end{itemize}
 
+%暂时没有理解这句话。
+R的缺点:
+\begin{itemize}
+  \item 耗内存，所以要用rm命令来删除对象，以释放内存，如:\verb|rm(x,y,z)|。
+  \item 精度有问题
+\end{itemize}
 
-
-\charpter{R命令介绍}
+\section{R命令介绍}
 在linux下面使用R的时候，我们一般用到的命令是：
 \begin{verbatim}
-R --vanilla <plot.R >a.out
+R --vanilla <plot.R > a.out
 \end{verbatim}
 这里的 --vanilla 是参数，当然还有别的很多参数，具体有兴趣可以用man命令查看。
 <plot.R 的意思是将plot-R这个文件作为一个输入。既然有输入，那自然有输出，>a.out 的意思就是将显示的内容输出到a.out这个文件中。
 
-\charpter{安装对应的包}
+\section{关于包的安装与使用}
+\subsection{安装对应的包}
 R语言中，有多种方式可以导入数据包，如下，一目了然：
 \begin{verbatim}
 library(Hmisc)
@@ -38,22 +54,20 @@ source("plotter.R")
 install.packages("ggplot2")
 install.packages("Hmisc")
 \end{verbatim}
+\subsection{包的使用}
+用source命令导入包，如:\verb|>source("plot.R")|
 
-
-
-\charpter{}
-\charpter{}
-\charpter{}
-\charpter{}
-\charpter{}
-
+\section{查看帮助}
+如查看solve的帮助:
+\begin{itemize}
+  \item \verb|>help(solve)|
+  \item \verb|>?solve|
+\end{itemize}
+对于一些特殊的字符串可以加上双引号，如: \verb|>help("[[")|
 
 
 %\begin{verbatim}
 %git config --global http.postBuffer  524288000
 %\end{verbatim}
-
-
-
 
 \end{document}
