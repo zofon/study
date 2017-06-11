@@ -279,7 +279,49 @@ z<-odbcConnectExcel("test.xls")\\
 w<-sqlFetch(z,"Sheet1")
 
 \section{画图}
-散点图plot(x)
+高水平画图函数只该函数本身就能作图，低水平画图函数要借助别的命令才能画一个完成的图。
+
+\subsection{散点图}
+散点图可以用于线性回归：\\
+\verb|plot(x1,x2)|\\
+\verb|plot(x$x1,x$x2)|
+\begin{verbatim}
+plot(x$x1,x$x2)
+main="this is title"
+xlab="x轴title"
+ylab="y轴title"
+xlim=c(0,100)
+ylim=c(0,100)
+xaxs="i"
+yaxs="i"
+col="red"
+pch=19 #表示点的款式
+\end{verbatim}
+
+\subsection{连线图}
+\begin{verbatim}
+a=2:6
+b=4:8
+plot(a,b,type="l")
+\end{verbatim}
+
+\subsection{直方图}
+\verb|hist(x$x1)|
+
+\subsection{柱状图}
+\verb|table(x$x1)|\\
+\verb|barplot(table(x$x1))|
+
+\subsection{饼图}
+\verb|table(x$x1)|
+
+\subsection{分布函数的密度图}
+plot(density(rnorm(1000)))
+
+\subsection{地图，绘制地理数据}
+map("world",fill=TRUE,col=heat.color(10))\\
+map("stata",boundary=FALSE,col="red",odd=TRUE)
+
 
 \section{编写R脚本语法}
 \subsection{编写脚本}
