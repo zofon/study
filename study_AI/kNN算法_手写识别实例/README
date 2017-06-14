@@ -6,6 +6,10 @@
 先安装pip工具（pip是一个安装和管理 Python 包的工具 ,是easy_install的替代品），然后用该工具安装numpy
 sudo apt-get install python-pip 
 pip install numpy
+安装成功之后显示如下信息（可能有更新信息，按照提示更新即可）：
+Successfully installed numpy
+You are using pip version 8.1.1, however version 9.0.1 is available.
+You should consider upgrading via the 'pip install --upgrade pip' command.
 
 
 例子使用方法：
