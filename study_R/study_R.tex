@@ -43,6 +43,7 @@ R --vanilla <plot.R > a.out
 
 \section{关于包的安装与使用}
 \subsection{安装对应的包}
+\label{install_package}
 R语言中，有多种方式可以导入数据包，如下，一目了然：
 \begin{verbatim}
 library(Hmisc)
@@ -350,6 +351,15 @@ while(a[i]<121){i=i+1;a[i-1]+2}
 
 
 \chapter{NorNet画图脚本分析}
+\section{基础介绍}
+plotter.R文件是Thomas编写的库文件，在画图脚本中需要用到里面的函数，所以要在开始的时候导入脚本。
+
+ggplot2和Hmisc在R语言中没有默认安装，需要在运行脚本之前安装好，安装方法参照前文~\ref{install_package}。
+
+\verb|allResults <- loadResults("passive.flow-ReceivedBitRate.data.bz2")|\#载入数据，这里和前面介绍的方法有点区别。
+
+\verb|allResults <- subset(allResults,allResults\$CMT == 'off')|\#这个函数的意思就是取allResults的子集，该子集的条件就是CMT == 'off'。然后重新赋值到allResults中，使用这种方法达到过滤数据的效果。
+
 \section{基础实验脚本分析}
 首先上图：
 \begin{figure}[H]
