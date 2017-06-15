@@ -1,0 +1,20 @@
+    titlepages.pdf displays some 40 different designs of title pages
+taken from a selection of books and theses. The code for the examples 
+is included. A variety of colors and fonts are used in the examples. 
+
+    If you wish to process the source file titlepages.tex, by either 
+pdflatex or xelatex, consider saving titlepages.pdf under another name 
+before doing so in case not all the fonts are available on your system. 
+In any case, read the advice at the beginning of the file titlepages.tex.
+
+    The work is distributed under the LaTeX Project Public Licence.
+
+Peter Wilson
+2010/07/13
+
+
+    
+
+  
+
+     
