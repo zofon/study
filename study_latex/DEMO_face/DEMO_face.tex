@@ -1,0 +1,37 @@
+\documentclass{ctexbook}
+\pagestyle{empty}
+\usepackage{fontspec}
+\usepackage{tikz,xcolor,mwe}
+
+\definecolor{cvgreen}{HTML}{92D14F}
+\definecolor{cvgray}{HTML}{D8E4BE}
+\definecolor{cvtext}{HTML}{92909B}
+
+\usetikzlibrary{shadows}
+\begin{document}
+\begin{tikzpicture}[remember picture,overlay]
+    % green bar
+    \fill[cvgreen] (current page.north west) rectangle ([xshift=5cm]current page.south west);
+    % gray bar
+    \fill[cvgray] ([yshift=-5cm]current page.north west) rectangle ([yshift=-10cm]current page.north east);
+    % title and date
+    \node[cvtext,right] at ([yshift=-7cm]current page.north west) {\addfontfeature{Scale = 5}\bfseries Study \LaTeX};
+    \node[cvtext,above left] at ([xshift=-1cm,yshift=-9.5cm]current page.north east) {\huge\bfseries \today};
+    % cover photo
+    \node[inner sep=0pt,below right] (image) at ([xshift=5cm,yshift=-10cm]current page.north west) {\includegraphics[width=7cm,height=9cm]{example-image-a}};
+    % name and address
+    \node[fill=white,drop shadow,align=center,text width=6.4cm,inner sep=0.3cm,below] (name) at (image.south) {\LARGE \LaTeX Studio};
+    \node[text width=15cm,inner sep=0.3cm,below right] at (name.south west) {\Large\obeylines%
+        Tel.: 01 74 / 98
+        E-Mail: StudyLaTex@yeah.net
+    };
+    % attachments
+    \node[white,text width=5cm,inner sep=0.3cm,above right] at ([yshift=1cm]current page.south west)
+    {\large\obeylines%
+        \textbf{Introduction:}
+        Typesetting Services
+        Source Files Provided
+        PDF Compatibility
+    };
+\end{tikzpicture}
+\end{document}

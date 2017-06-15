@@ -22,7 +22,16 @@
 
 \chapter{学习准备}
 \section{latex介绍}
-latex是一个排版软件。
+latex是一个排版软件，和Microsoft Office Word 等所见即所得的办公软件不同，用LATEX 排版文档，
+首先要用文本编辑器编辑好tex 文档，然后通过各种程序编译，得到pdf 文档用于打印或者阅读。一般我们经常用pdflatex
+或者xelatex 程序直接从tex文件生成pdf文件。如果是中文tex文档，优先使用xelatex程序编译。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=6cm]{Figures/latex_build.png}
+\caption{LaTex的基本的排版流程}	
+\end{figure}
+
 \section{关于编辑器和编译平台}
 在windows环境下，ctex是最好的选择，然后使用WinEdt作为编辑器最好。
 
