@@ -6,31 +6,54 @@
 \usepackage[colorlinks,linkcolor=black]{hyperref}%colorlinks启用链接颜色，linkcolor指定对应的颜色
 \usepackage{listings}
 %\usepackage[cache=false]{minted}  % 代码高亮X
+\usepackage{fontspec}
+\usepackage{tikz,xcolor,mwe}
+
+
+\definecolor{cvgreen}{HTML}{92D14F}
+\definecolor{cvgray}{HTML}{D8E4BE}
+\definecolor{cvtext}{HTML}{92909B}
+\usetikzlibrary{shadows}
+
 \pagestyle{empty}
 \CTEXsetup[format={\Large\bfseries}]{section}%可以让section的标题左对齐。
 %\CTEXsetup[format+={\flushleft}]{section}%让section的标题居左
 %\renewcommand{\thesection}{\chinese{section}}%将“1.1”改为汉字“一”，但是subsection就会变成  六.1 ，比较难看，还是不用比较好。
+
 \begin{document}
-	
-\begin{center}
-\huge \textbf{latex学习}
-\end{center}
+\begin{tikzpicture}[remember picture,overlay] 
+\fill[cvgreen] (current page.north west) rectangle ([xshift=6cm]current page.south west);% green bar
+\fill[cvgray] ([yshift=-11cm]current page.north west) rectangle ([yshift=-17cm]current page.north east); % gray bar
+
+\node[cvtext,right] at ([xshift=3.5cm,yshift=-13cm]current page.north west) {\Huge Study \LaTeX};
+\node[cvtext,above left] at ([xshift=-1cm,yshift=-16.5cm]current page.north east) {\Large\bfseries \today};
+% cover photo
+\node[inner sep=0pt,below right] (image) at ([xshift=17cm,yshift=-1cm]current page.north west) {\includegraphics[width=3cm]{hainulogo.png}};
+% name and address
+\node[fill=white,align=center,text width=6.4cm,inner sep=0.8cm,below] (name) at (image.south) {};
+\node[text width=15cm,inner sep=0.3cm,below right] at (name.south west){\Large Author:Flynn\\E-Mail:zofon@qq.com};
+% attachments
+\node[white,text width=5cm,inner sep=0.6cm,above right] at ([yshift=1cm]current page.south west)
+{\large\obeylines\textbf{This is for \\The Hi-Net Group}};  
+\end{tikzpicture}
 
 \tableofcontents
 
 \begin{flushleft}
 
 \chapter{学习准备}
-\section{latex介绍}
-latex是一个排版软件，和Microsoft Office Word 等所见即所得的办公软件不同，用LATEX 排版文档，
+\section{\LaTeX 介绍~\cite{1994Latex}}
+latex是一个排版软件，和Microsoft Office Word 等所见即所得的办公软件不同，用\LaTeX 排版文档，
 首先要用文本编辑器编辑好tex 文档，然后通过各种程序编译，得到pdf 文档用于打印或者阅读。一般我们经常用pdflatex
-或者xelatex 程序直接从tex文件生成pdf文件。如果是中文tex文档，优先使用xelatex程序编译。
-
+或者xelatex 程序直接从tex文件生成pdf文件。如果是中文tex文档，优先使用xelatex程序编译。如图~\ref{LaTex的基本的排版流程}:
 \begin{figure}[H]
 \centering
 \includegraphics[width=6cm]{Figures/latex_build.png}
+\label{LaTex的基本的排版流程}
 \caption{LaTex的基本的排版流程}	
 \end{figure}
+在\hyperref{http://www.latexstudio.net/}{category}{LaTex开源小屋}{LaTex开源小屋}中有很多相关的资源。
+
 
 \section{关于编辑器和编译平台}
 在windows环境下，ctex是最好的选择，然后使用WinEdt作为编辑器最好。
@@ -166,7 +189,8 @@ return 0;
 \section{最简单的模板}
 请参考当前目录下的DEMO.tex文件。
 
-
+\section{封面模板}
+封面的模板请参照DEMO\_face文件夹。
 
 
 \section{标题居左}

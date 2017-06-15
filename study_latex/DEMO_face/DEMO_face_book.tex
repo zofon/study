@@ -9,29 +9,20 @@
 
 \usetikzlibrary{shadows}
 \begin{document}
-\begin{tikzpicture}[remember picture,overlay]
-    % green bar
-    \fill[cvgreen] (current page.north west) rectangle ([xshift=5cm]current page.south west);
-    % gray bar
-    \fill[cvgray] ([yshift=-5cm]current page.north west) rectangle ([yshift=-10cm]current page.north east);
+\begin{tikzpicture}[remember picture,overlay] 
+    \fill[cvgreen] (current page.north west) rectangle ([xshift=5cm]current page.south west);% green bar
+    \fill[cvgray] ([yshift=-5cm]current page.north west) rectangle ([yshift=-10cm]current page.north east); % gray bar
     % title and date
-    \node[cvtext,right] at ([yshift=-7cm]current page.north west) {\addfontfeature{Scale = 5}\bfseries Study \LaTeX};
+%    \node[cvtext,right] at ([yshift=-7cm]current page.north west) {\addfontfeature{Scale = 5}\bfseries {\Huge Study \LaTeX}};
+    \node[cvtext,right] at ([yshift=-7cm]current page.north west) {\Huge Study \LaTeX};
     \node[cvtext,above left] at ([xshift=-1cm,yshift=-9.5cm]current page.north east) {\huge\bfseries \today};
     % cover photo
-    \node[inner sep=0pt,below right] (image) at ([xshift=5cm,yshift=-10cm]current page.north west) {\includegraphics[width=7cm,height=9cm]{example-image-a}};
+    \node[inner sep=0pt,below right] (image) at ([xshift=6cm,yshift=-11cm]current page.north west) {\includegraphics[width=6cm]{hainulogo.png}};
     % name and address
-    \node[fill=white,drop shadow,align=center,text width=6.4cm,inner sep=0.3cm,below] (name) at (image.south) {\LARGE \LaTeX Studio};
-    \node[text width=15cm,inner sep=0.3cm,below right] at (name.south west) {\Large\obeylines%
-        Tel.: 01 74 / 98
-        E-Mail: StudyLaTex@yeah.net
-    };
+    \node[fill=white,align=center,text width=6.4cm,inner sep=0.8cm,below] (name) at (image.south) {};
+    \node[text width=15cm,inner sep=0.3cm,below right] at (name.south west){\Large Author:Flynn\\E-Mail:zofon@qq.com};
     % attachments
-    \node[white,text width=5cm,inner sep=0.3cm,above right] at ([yshift=1cm]current page.south west)
-    {\large\obeylines%
-        \textbf{Introduction:}
-        Typesetting Services
-        Source Files Provided
-        PDF Compatibility
-    };
+    \node[white,text width=5cm,inner sep=0.6cm,above right] at ([yshift=1cm]current page.south west)
+    {\large\obeylines\textbf{This is for \\The Hi-Net Group}};  
 \end{tikzpicture}
 \end{document}
